@@ -1,5 +1,6 @@
-*~
-.DS_Store
-.tramp_history
 result
+result-bin
+/.vscode/
+/.direnv/
+*.qcow2
 result-*
