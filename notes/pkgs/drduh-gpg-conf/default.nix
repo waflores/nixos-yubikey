@@ -1,5 +1,6 @@
-{ stdenv
-, fetchFromGitHub
+{
+  stdenv,
+  fetchFromGitHub,
 }:
 
 let
@@ -28,7 +29,7 @@ stdenv.mkDerivation {
 
   meta = with stdenv.lib; {
     description = "drduh's gpg.conf";
-    homepage    = https://github.com/drduh/config;
-    license     = licenses.mit;
+    homepage = "https://github.com/drduh/config";
+    license = licenses.mit;
   };
 }

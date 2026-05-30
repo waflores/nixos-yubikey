@@ -1,6 +1,7 @@
-{ stdenv
-, buildGoPackage
-, fetchFromGitHub
+{
+  stdenv,
+  buildGoPackage,
+  fetchFromGitHub,
 }:
 
 buildGoPackage rec {
@@ -17,7 +18,7 @@ buildGoPackage rec {
   };
 
   meta = with stdenv.lib; {
-    homepage = https://cfssl.org/;
+    homepage = "https://cfssl.org/";
     description = "Cloudflare's PKI and TLS toolkit";
     license = licenses.bsd2;
     platforms = platforms.all;

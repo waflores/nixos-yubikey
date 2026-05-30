@@ -2,16 +2,19 @@ let
 
   lib = import ../lib;
   inherit (lib) fixedNixpkgs;
-  localPkgs = (import ../.) {};
+  localPkgs = (import ../.) { };
 
 in
 
-{ supportedSystems ? [ "x86_64-linux" ]
-, scrubJobs ? true
-, pkgs ? lib.pkgs
-, nixpkgsArgs ? {
-    config = { inHydra = true; };
-  }
+{
+  supportedSystems ? [ "x86_64-linux" ],
+  scrubJobs ? true,
+  pkgs ? lib.pkgs,
+  nixpkgsArgs ? {
+    config = {
+      inHydra = true;
+    };
+  },
 }:
 
 with import (fixedNixpkgs + "/pkgs/top-level/release-lib.nix") {
@@ -19,9 +22,7 @@ with import (fixedNixpkgs + "/pkgs/top-level/release-lib.nix") {
   packageSet = import ../.;
 };
 
-let
-
-in pkgs.lib.fix (jobsets: {
+pkgs.lib.fix (_jobsets: {
   x86_64-linux = pkgs.releaseTools.aggregate {
     name = "nixos-yubikey-x86_64-linux";
     meta.description = "nixos-yubikey (x86_64-linux)";

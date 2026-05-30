@@ -1,7 +1,7 @@
-{ stdenv
-, lib
-, buildGoModule
-, fetchFromGitHub
+{
+  lib,
+  buildGoModule,
+  fetchFromGitHub,
 }:
 
 buildGoModule rec {
@@ -19,7 +19,7 @@ buildGoModule rec {
   };
 
   meta = with lib; {
-    homepage = https://cfssl.org/;
+    homepage = "https://cfssl.org/";
     description = "Cloudflare's PKI and TLS toolkit";
     license = licenses.bsd2;
     maintainers = lib.singleton lib.maintainers.dhess;

@@ -4,12 +4,19 @@ let
   outPath = localLib.fixedNixpkgs;
 
 in
-{ system ? "x86_64-linux"
-, crossSystem ? null
-, config ? { allowBroken = true; }
-, supportedSystems ? [ "x86_64-linux" ]
-, nixpkgs ? { inherit outPath; revCount = 56789; shortRev = "gfedcba"; }
-, pkgs ? import nixpkgs { inherit system crossSystem config; }
+{
+  system ? "x86_64-linux",
+  crossSystem ? null,
+  config ? {
+    allowBroken = true;
+  },
+  supportedSystems ? [ "x86_64-linux" ],
+  nixpkgs ? {
+    inherit outPath;
+    revCount = 56789;
+    shortRev = "gfedcba";
+  },
+  pkgs ? import nixpkgs { inherit system crossSystem config; },
 }:
 
 let
@@ -18,13 +25,13 @@ let
     pinentry-program ${pkgs.pinentry-curses}/bin/pinentry-curses
   '';
 
-  yk-scripts = pkgs.callPackage pkgs/yk-scripts {};
+  yk-scripts = pkgs.callPackage pkgs/yk-scripts { };
 
-  gpg-scripts = pkgs.callPackage pkgs/gpg-scripts {};
+  gpg-scripts = pkgs.callPackage pkgs/gpg-scripts { };
 
-  drduh-gpg-conf = pkgs.callPackage pkgs/drduh-gpg-conf {};
+  drduh-gpg-conf = pkgs.callPackage pkgs/drduh-gpg-conf { };
 
-  cfssl_1_4_1 = pkgs.callPackage pkgs/cfssl/1.4.1.nix {};
+  cfssl_1_4_1 = pkgs.callPackage pkgs/cfssl/1.4.1.nix { };
 
   nixos-yubikey-configuration = {
 
@@ -66,17 +73,15 @@ let
     ];
     services.pcscd.enable = true;
 
-
     ## Make sure networking is disabled in every way possible.
 
     boot.initrd.network.enable = false;
     networking.dhcpcd.enable = false;
-    networking.dhcpcd.allowInterfaces = [];
+    networking.dhcpcd.allowInterfaces = [ ];
     networking.firewall.enable = true;
     networking.useDHCP = false;
     networking.useNetworkd = false;
     networking.wireless.enable = false;
-
 
     ## Make it easy to tell which nixpkgs the image was built from.
     #
@@ -96,14 +101,12 @@ let
     '';
     environment.etc.host-nix-channel.source = pkgs.path;
 
-
     ## Secure defaults.
 
     boot.cleanTmpDir = true;
     boot.kernel.sysctl = {
       "kernel.unprivileged_bpf_disabled" = 1;
     };
-
 
     ## Set up the shell for making keys.
 
