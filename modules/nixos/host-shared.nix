@@ -15,6 +15,9 @@
     usbutils
     vim
     vscode
+    yubico-pam
+    yubico-piv-tool
+    yubikey-manager
     # keep-sorted end
   ];
   # NOTE (@waflores - 2025-04-05): we can make the package point to the old git-lfs

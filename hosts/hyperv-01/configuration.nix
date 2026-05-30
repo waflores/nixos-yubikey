@@ -48,5 +48,9 @@
   services.xserver.enable = true;
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
-
+  services.pcscd.enable = true;
+  programs.gnupg.agent.enable = true;
+  programs.gnupg.agent.enableSSHSupport = true;
+  services.udev.packages = [ pkgs.yubikey-personalization ];
+  services.yubikey-agent.enable = true;
 }

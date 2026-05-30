@@ -8,4 +8,4 @@ qemu-system-x86_64 \
   -device uefi-vars-x64,jsonfile=./vars.json \
   -m 8G \
   -smp 4 \
-  -usb -device u2f-passthru,hidraw=/dev/hidraw5
+  -usb -device usb-host,hostbus=3,hostaddr=51

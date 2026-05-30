@@ -21,6 +21,7 @@
 
   programs = {
     # keep-sorted start block=yes
+
     bash = {
       enable = true;
       enableCompletion = true;

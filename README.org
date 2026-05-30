@@ -128,3 +128,17 @@
    Fusion, you'll need to edit your virtual machine's VMX file:
 
    - [[https://support.yubico.com/support/solutions/articles/15000008891-troubleshooting-vmware-workstation-device-passthrough][Troubleshooting VMWare Workstation Device Passthrough]]
+
+
+# New NixOS configuration
+We can run this new configuration via:
+
+```bash
+nix run .#nixosConfigurations.hyperv-01.config.system.build.vm -- -usb -device usb-host,hostbus=3,hostaddr=51
+```
+
+Where we get this info via:
+```bash
+lsusb | grep -i yubi
+Bus 003 Device 051: ID 1050:0407 Yubico.com Yubikey 4/5 OTP+U2F+CCID
+```
